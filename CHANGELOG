@@ -25,3 +25,8 @@ Este es un archivo para documentar los cambios por cada commit para el proyecto 
 ##### Added
 - Rocket Ship 
 - Metal Ship material
+
+### v[1.0.2] 2020-07-23
+##### Added 
+- Thrust and Rotation
+- Rocket Audio Clip
