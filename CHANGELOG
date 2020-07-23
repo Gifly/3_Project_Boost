@@ -3,14 +3,20 @@
 Este es un archivo para documentar los cambios por cada commit para el proyecto *Project Boost*.
 
 - #### Explicaciones
-    - ##### Añadido
-    - ##### Modificado
-    - ##### Arreglado
-    - ##### Borrado
-    - ##### Corregido
+    - ##### Added
+    - ##### Modifications
+    - ##### Fixed
+    - ##### Erased
+    - ##### Corrected
     
 ### v[0.0.0] 2020-07-22
-##### Añadido 
+##### Added 
 - README.md
 - CHANGELOG
 - Empty project
+
+### v[1.0.0] 2020-07-22
+##### Added 
+-Added terrain
+-Added launch pad
+-Added ground material
