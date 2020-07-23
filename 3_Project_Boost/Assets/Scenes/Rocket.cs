@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+    [SerializeField] float rcsThrust = 100f;
+    [SerializeField] float mainThrust = 50f;
+
     Rigidbody rigidBody;
     AudioSource audioSource; 
     // Start is called before the first frame update
@@ -17,31 +20,51 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessInput();
+        Thrust();
+        Rotate();
     }
 
-    void ProcessInput()
+    void OnCollisionEnter(Collision collision) {
+        switch (collision.gameObject.tag) {
+            case "Friendly":
+                print("OK");
+                break;
+            default:
+                print("Dead");
+                break;
+        }
+    }
+
+    void Rotate()
+    {
+        rigidBody.freezeRotation = true; //Take manual control of rotation 
+        float rotationThisFrame = rcsThrust * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(Vector3.forward * rotationThisFrame);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(-Vector3.forward * rotationThisFrame);
+        }
+        rigidBody.freezeRotation = false; //Resume physics of rotation
+
+    }
+
+    private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            print("Thrusting");
-            rigidBody.AddRelativeForce(Vector3.up);
+            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
             }
         }
-        else {
-            audioSource.Stop();
-        }
-        if (Input.GetKey(KeyCode.A))
+        else
         {
-            print("Rotating Left");
-            transform.Rotate(Vector3.forward);
-        }
-        else if (Input.GetKey(KeyCode.D)) {
-            print("Rotating Right");
-            transform.Rotate(-Vector3.forward);
+            audioSource.Stop();
         }
     }
 }
