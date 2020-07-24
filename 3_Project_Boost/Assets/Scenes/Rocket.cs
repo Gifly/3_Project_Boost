@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
     [SerializeField] float rcsThrust = 100f;
-    [SerializeField] float mainThrust = 50f;
+    [SerializeField] float mainThrust = 100f;
 
     Rigidbody rigidBody;
     AudioSource audioSource; 
@@ -29,8 +27,12 @@ public class Rocket : MonoBehaviour
             case "Friendly":
                 print("OK");
                 break;
+            case "Finish":
+                SceneManager.LoadScene(1);
+                break;
             default:
                 print("Dead");
+                SceneManager.LoadScene(0);
                 break;
         }
     }
